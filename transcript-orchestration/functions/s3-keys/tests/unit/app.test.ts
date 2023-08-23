@@ -17,3 +17,14 @@ tap.test('constructs keys from audio input key', async (t) => {
     processedTranscriptKey: 'processed-transcripts/50.json',
   })
 })
+
+tap.test('constructs keys from audio input key', async (t) => {
+  const result = await handleEvent({ audioInputKey: 'audio/all_in/50.m4a' })
+  t.same(result, {
+    mp3Key: 'audio/all_in/50.mp3',
+    whisperPrefix: 'whisper-batch-output',
+    whisperOutputKey: 'whisper-batch-output/all_in/50.json',
+    transcribeOutputKey: 'transcribe-output/all_in/50',
+    processedTranscriptKey: 'processed-transcripts/all_in/50.json',
+  })
+})

@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 app = flask.Flask(__name__)
 
 s3_client = boto3.client("s3")
-model_name = "medium.en"
+model_name = "small.en"
 
 @app.route("/ping", methods=["GET"])
 def ping():

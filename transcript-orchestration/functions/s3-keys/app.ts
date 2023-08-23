@@ -15,8 +15,9 @@ export type S3KeysEvent = {
 export const handleEvent = middify(async (event: S3KeysEvent, context: Context) => {
   logger.info('Defining S3 Keys', { event })
   const { audioInputKey } = event
-  const base = basename(audioInputKey)
+  const base = audioInputKey.split('/').slice(1).join('/')
   const stem = base.split('.')[0]
+  logger.info("*****", { stem })
   const keys = {
     mp3Key: `audio/${stem}.mp3`,
     whisperOutputKey: `${WHISPER_OUTPUT_PREFIX}/${stem}.json`,
